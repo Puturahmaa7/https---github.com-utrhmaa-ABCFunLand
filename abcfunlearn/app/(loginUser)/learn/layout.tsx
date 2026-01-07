@@ -1,8 +1,42 @@
-type Props = {
+export default function LearnLayout({
+  children,
+}: {
   children: React.ReactNode;
-};
+}) {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* HEADER */}
+      <div
+        style={{
+          backgroundColor: "#7ED957",
+          margin: "20px",
+          padding: "20px",
+          borderRadius: "40px",
+          textAlign: "center",
+          fontSize: "36px",
+          fontWeight: "800",
+          flexShrink: 0,
+        }}
+      >
+        Belajar Huruf
+      </div>
 
-const loginUserLayout = ({ children }: Props) => {
-  return <div>{children}</div>;
-};
-export default loginUserLayout;
+      {/* CONTENT */}
+      <div
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          padding: "20px",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
