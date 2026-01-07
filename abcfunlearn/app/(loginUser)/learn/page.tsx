@@ -21,7 +21,7 @@ export default function LearnPage() {
       />
 
       <div
-        onClick={() => router.push("/learn/belajar_suku_kata")}
+        onClick={() => router.push("/learn/Belajar_Suku_Kata")}
         style={cardStyle}
       />
 
