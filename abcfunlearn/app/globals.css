@@ -8,6 +8,13 @@ body {
   overflow-x: hidden;
 }
 
+.clerk-button {
+  @apply w-full px-2 py-1 text-lg font-medium text-white rounded-xl
+         bg-blue-600 hover:bg-blue-700
+         transition-all transform hover:scale-[1.02]
+         shadow-lg border-b-4 border-blue-700 active:border-b-0;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

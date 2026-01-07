@@ -29,7 +29,7 @@ const buttonVariants = cva(
           "bg-transparent text-slate-500 border-2 border-transparent hover:bg-slate-100 transition-none",
 
         sidebarOutline:
-          "bg-sky-500/15 text-sky-500 border-sky-300 border-2 hover:bg-sky-500/20 transition-none",
+          "bg-blue-500/15 text-blue-500 border-blue-300 border-2 hover:bg-blue-500/20 transition-none",
         secondaryAccent:
           "px-6 py-2.5 text-lg font-light text-blue-600 border-2 border-blue-600 rounded-xl hover:bg-blue-50 transition-colors transform hover:scale-[1.02]",
         primaryAccent:
