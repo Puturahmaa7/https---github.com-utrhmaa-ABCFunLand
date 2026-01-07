@@ -1,4 +1,11 @@
-import { MobileSidebar } from "./mobile-sidebar";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const MobileSidebar = dynamic(
+  () => import("./mobile-sidebar").then((m) => m.MobileSidebar),
+  { ssr: false }
+);
 
 export const MobileHeader = () => {
   return (

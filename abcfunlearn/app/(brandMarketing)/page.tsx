@@ -151,7 +151,7 @@ export default function MarketingPage() {
                     asChild
                     className="normal-case text-sm sm:text-base px-5 sm:px-6 py-3 w-full sm:w-auto"
                   >
-                    <Link href="#fitur" className="text-center w-full">
+                    <Link href="/learn" className="text-center w-full">
                       Mulai Belajar Gratis
                     </Link>
                   </Button>
