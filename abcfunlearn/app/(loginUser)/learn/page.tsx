@@ -11,10 +11,12 @@ export default function LearnPage() {
       style={{
         display: "flex",
         justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
         gap: "60px",
-        marginTop: "80px",
       }}
     >
+
       <div
         onClick={() => router.push("/learn/belajar_huruf")}
         style={cardStyle}
