@@ -62,8 +62,8 @@ export default function BelajarHurufPage() {
           fontSize: "28px",
           border: "none",
           cursor: "pointer",
+          zIndex: 9999, 
         }}
-        aria-label="Kembali"
       >
         ◀
       </button>
