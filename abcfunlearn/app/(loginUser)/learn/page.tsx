@@ -14,6 +14,7 @@ export default function LearnPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        minHeight: "100vh",
         gap: "60px",
       }}
     >
