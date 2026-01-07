@@ -82,75 +82,8 @@ export const getLeaderboard = async (limit = 10) => {
   });
 };
 
-/*
-// Ambil challenge random per content type
-export const getRandomChallenge = async (
-  contentType: "huruf" | "suku_kata" | "kata",
-  lessonId: number | null = null
-) => {
-  let table;
-  if (contentType === "huruf") table = huruf;
-  if (contentType === "suku_kata") table = sukuKata;
-  if (contentType === "kata") table = kata;
-
-  // Ambil satu materi random
-  const [randomItem] = await db
-    .select()
-    .from(table)
-    .orderBy(sql`RANDOM()`)
-    .limit(1);
-
-  if (!randomItem) return null;
-
-  // Buat challenge baru
-  const [challenge] = await db
-    .insert(challenges)
-    .values({
-      lessonId,
-      contentType,
-      contentId: randomItem.id,
-      points: 10,
-    })
-    .returning();
-
-  // Opsi jawaban: 1 benar + 3 salah random
-  const correctText =
-    contentType === "huruf"
-      ? randomItem.huruf
-      : contentType === "suku_kata"
-      ? randomItem.sukuKata
-      : randomItem.kata;
-
-  const incorrect = await db
-    .select()
-    .from(table)
-    .whereNot(eq(table.id, randomItem.id))
-    .orderBy(sql`RANDOM()`)
-    .limit(3);
-
-  const options = [
-    { text: correctText, correct: true, audioSrc: randomItem.audioSrc },
-    ...incorrect.map((i) => ({
-      text:
-        contentType === "huruf"
-          ? i.huruf
-          : contentType === "suku_kata"
-          ? i.sukuKata
-          : i.kata,
-      correct: false,
-      audioSrc: i.audioSrc,
-    })),
-  ];
-
-  // Simpan opsi challenge
-  for (const opt of options) {
-    await db.insert(challengeOptions).values({
-      challengeId: challenge.id,
-      text: opt.text,
-      correct: opt.correct,
-      audioSrc: opt.audioSrc,
-    });
-  }
-
-  return challenge;
-};*/
+export const getHurufByHuruf = async (hurufChar: string) => {
+  return await db.query.huruf.findFirst({
+    where: eq(huruf.huruf, hurufChar),
+  });
+};
