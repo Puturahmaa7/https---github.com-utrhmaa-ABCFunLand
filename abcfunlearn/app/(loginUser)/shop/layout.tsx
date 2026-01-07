@@ -1,8 +1,12 @@
-type Props = {
-  children: React.ReactNode;
+import { Loader } from "lucide-react";
+
+const Loading = () => {
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      <Loader className="h-6 w-6 animate-spin text-muted-foreground" />
+    </div>
+  );
 };
 
-const loginUserLayout = ({ children }: Props) => {
-  return <div>{children}</div>;
-};
-export default loginUserLayout;
+export default Loading;
+export default MainLayout;

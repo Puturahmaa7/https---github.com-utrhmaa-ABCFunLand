@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 
 export default function LearnPage() {
+
   const router = useRouter();
 
   return (
@@ -30,6 +31,8 @@ export default function LearnPage() {
       />
     </div>
   );
+
+  return <div>Selamat datang di halaman Learn</div>;
 }
 
 const cardStyle: React.CSSProperties = {
