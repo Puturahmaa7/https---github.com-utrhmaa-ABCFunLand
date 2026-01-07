@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function DetailHurufPage() {
   const params = useSearchParams();
@@ -22,19 +23,19 @@ export default function DetailHurufPage() {
   return (
     <div
       style={{
-        marginTop: "40px",
+        marginTop: "30px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "30px",
+        gap: "28px",
       }}
     >
-      {/* PANAH + HURUF */}
+      {/* PANAH + GAMBAR HURUF */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "40px",
+          gap: "32px",
         }}
       >
         {/* PANAH KIRI */}
@@ -43,25 +44,30 @@ export default function DetailHurufPage() {
             ◀
           </button>
         ) : (
-          <div style={{ width: "70px" }} />
+          <div style={{ width: "64px" }} />
         )}
 
-        {/* HURUF BESAR */}
+        {/* GAMBAR HURUF */}
         <div
           style={{
-            backgroundColor: "#7ED957",
-            width: "320px",
-            height: "200px",
-            borderRadius: "40px",
+            width: "300px",
+            height: "220px",
+            borderRadius: "36px",
+            backgroundColor: "#FFFFFF",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: "120px",
-            fontWeight: "800",
-            userSelect: "none",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
           }}
         >
-          {huruf}
+          <Image
+            src={`/huruf/${huruf}.png`}
+            alt={`Huruf ${huruf}`}
+            width={200}
+            height={200}
+            style={{ objectFit: "contain" }}
+            priority
+          />
         </div>
 
         {/* PANAH KANAN */}
@@ -70,18 +76,35 @@ export default function DetailHurufPage() {
             ▶
           </button>
         ) : (
-          <div style={{ width: "70px" }} />
+          <div style={{ width: "64px" }} />
         )}
+      </div>
+
+      {/* TEKS HURUF */}
+      <div
+        style={{
+          fontFamily: "var(--font-baloo)",
+          fontSize: "48px",
+          fontWeight: "800",
+          color: "#1976D2",
+        }}
+      >
+        Huruf {huruf}
       </div>
 
       {/* TOMBOL SUARA */}
       <button
         style={{
-          fontSize: "48px",
-          background: "none",
+          fontSize: "52px",
+          backgroundColor: "#FFD54F",
           border: "none",
+          borderRadius: "50%",
+          width: "80px",
+          height: "80px",
           cursor: "pointer",
+          boxShadow: "0 6px 14px rgba(0,0,0,0.2)",
         }}
+        aria-label="Putar suara"
       >
         🔊
       </button>
@@ -90,12 +113,13 @@ export default function DetailHurufPage() {
 }
 
 const panahStyle: React.CSSProperties = {
-  width: "70px",
-  height: "70px",
+  width: "64px",
+  height: "64px",
   borderRadius: "50%",
-  backgroundColor: "#666",
+  backgroundColor: "#4FC3F7", // biru cerah
   color: "#fff",
-  fontSize: "28px",
+  fontSize: "26px",
   border: "none",
   cursor: "pointer",
+  boxShadow: "0 6px 14px rgba(0,0,0,0.25)",
 };
