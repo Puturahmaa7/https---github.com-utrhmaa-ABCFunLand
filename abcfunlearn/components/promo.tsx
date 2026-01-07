@@ -21,7 +21,11 @@ export const Promo = () => {
       </Button>
     </div>
   );
+<<<<<<< HEAD
+};
+=======
 
 };
 
 
+>>>>>>> 77dbeeb151a3f00670704eaca1d78a7a6a2867ec
