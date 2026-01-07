@@ -68,28 +68,31 @@ export default function MarketingPage() {
 
   const daftarKontak = [
     {
-      id: "telepon",
-      gambar: "/images/Whatsapp.png",
-      judul: "Telepon/WhatsApp",
-      deskripsi:
-        "Jika membutuhkan respon cepat, hubungi kami melalui telepon atau WhatsApp.",
-      detail: "(+62) 812-3456-7890",
-    },
-    {
-      id: "email",
-      gambar: "/images/Gmail.png",
-      judul: "Email",
-      deskripsi: "Untuk pertanyaan umum, kerja sama, atau dukungan teknis.",
-      detail: "ABCFunLand@edu.ac.id",
-    },
-    {
-      id: "alamat",
-      gambar: "/images/Alamat.png",
-      judul: "Alamat",
-      deskripsi: "Kunjungi kantor kami untuk konsultasi langsung.",
-      detail:
-        "Jl. Raya Kampus Udayana, Jimbaran, Kec. Kuta Sel., Kabupaten Badung, Bali",
-    },
+     id: "telepon",
+     gambar: "/images/Whatsapp.png",
+     judul: "Telepon/WhatsApp",
+     deskripsi:
+       "Jika membutuhkan respon cepat, hubungi kami melalui telepon atau WhatsApp.",
+     detail: "(+62) 812-3456-7890",
+     href: "https://wa.me/6281995377860",
+   },
+   {
+    id: "email",
+    gambar: "/images/Gmail.png",
+    judul: "Email",
+    deskripsi: "Untuk pertanyaan umum, kerja sama, atau dukungan teknis.",
+    detail: "ABCFunLand@edu.ac.id",
+    href: "mailto:ABCFunLand@edu.ac.id",
+   },
+   {
+     id: "alamat",
+     gambar: "/images/Alamat.png",
+     judul: "Alamat",
+     deskripsi: "Kunjungi kantor kami untuk konsultasi langsung.",
+     detail:
+       "Jl. Raya Kampus Udayana, Jimbaran, Kec. Kuta Sel., Kabupaten Badung, Bali",
+     href: "https://www.google.com/maps/search/?api=1&query=Jl.+Raya+Kampus+Udayana+Jimbaran+Bali",
+   },
   ];
   const daftarTestimoni = [
     {

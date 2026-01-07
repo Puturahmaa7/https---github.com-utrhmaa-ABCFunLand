@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function DetailHurufPage() {
   const params = useSearchParams();
@@ -11,8 +11,6 @@ export default function DetailHurufPage() {
   const huruf = params.get("huruf")?.toUpperCase() ?? "A";
   const kodeHuruf = huruf.charCodeAt(0);
 
-  const [audioSrc, setAudioSrc] = useState<string | null>(null);
-  const [gambar, setGambar] = useState<string | null>(null);
   const [hover, setHover] = useState<string | null>(null);
 
   const hurufSebelumnya =
@@ -24,22 +22,11 @@ export default function DetailHurufPage() {
     router.push(`/learn/belajar_huruf/detail_huruf?huruf=${h}`);
   };
 
-  // 🔊 ambil data huruf dari database
-  useEffect(() => {
-    const loadHuruf = async () => {
-      const res = await fetch(`/api/huruf?huruf=${huruf}`);
-      const data = await res.json();
-
-      setAudioSrc(data?.audioSrc ?? null);
-      setGambar(data?.gambar ?? null);
-    };
-
-    loadHuruf();
-  }, [huruf]);
-
+  // 🔊 audio lokal berdasarkan huruf
   const playAudio = () => {
-    if (!audioSrc) return;
-    new Audio(audioSrc).play();
+    const audioPath = `/suaraHuruf/${huruf.toLowerCase()}.mp3`;
+    const audio = new Audio(audioPath);
+    audio.play();
   };
 
   return (
@@ -85,11 +72,12 @@ export default function DetailHurufPage() {
           }}
         >
           <Image
-            src={gambar ?? `/huruf/${huruf}.png`}
+            src={`/huruf/${huruf}.png`}
             alt={`Huruf ${huruf}`}
             width={200}
             height={200}
             style={{ objectFit: "contain" }}
+            priority
           />
         </div>
 
@@ -130,15 +118,21 @@ export default function DetailHurufPage() {
         onMouseLeave={() => setHover(null)}
         style={{
           fontSize: "52px",
-          backgroundColor: "#FFD54F",
+          backgroundColor: hover === "sound" ? "#FFEB3B" : "#FFD54F",
           border: "none",
           borderRadius: "50%",
           width: "80px",
           height: "80px",
           cursor: "pointer",
-          boxShadow: "0 6px 14px rgba(0,0,0,0.2)",
-          transform: hover === "sound" ? "scale(1.2)" : "scale(1)",
-          transition: "0.2s",
+          boxShadow:
+            hover === "sound"
+              ? "0 0 25px rgba(255, 235, 59, 0.9)"
+              : "0 6px 14px rgba(0,0,0,0.2)",
+          transform:
+            hover === "sound"
+              ? "scale(1.25) rotate(-5deg)"
+              : "scale(1)",
+          transition: "all 0.2s ease",
         }}
         aria-label="Putar suara"
       >
