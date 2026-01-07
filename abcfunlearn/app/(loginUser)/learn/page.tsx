@@ -2,9 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function LearnPage() {
   const router = useRouter();
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <div
@@ -17,7 +19,19 @@ export default function LearnPage() {
       }}
     >
       {/* BELAJAR HURUF */}
-      <div onClick={() => router.push("/learn/belajar_huruf")} style={cardStyle}>
+      <div
+        onClick={() => router.push("/learn/belajar_huruf")}
+        onMouseEnter={() => setHovered("huruf")}
+        onMouseLeave={() => setHovered(null)}
+        style={{
+          ...cardStyle,
+          transform: hovered === "huruf" ? "scale(1.08)" : "scale(1)",
+          boxShadow:
+            hovered === "huruf"
+              ? "0 16px 30px rgba(0,0,0,0.25)"
+              : "0 8px 16px rgba(0,0,0,0.15)",
+        }}
+      >
         <Image
           src="/images/belajar_huruf.png"
           alt="Belajar Huruf"
@@ -29,7 +43,16 @@ export default function LearnPage() {
       {/* BELAJAR SUKU KATA */}
       <div
         onClick={() => router.push("/learn/belajar_suku_kata")}
-        style={cardStyle}
+        onMouseEnter={() => setHovered("suku")}
+        onMouseLeave={() => setHovered(null)}
+        style={{
+          ...cardStyle,
+          transform: hovered === "suku" ? "scale(1.08)" : "scale(1)",
+          boxShadow:
+            hovered === "suku"
+              ? "0 16px 30px rgba(0,0,0,0.25)"
+              : "0 8px 16px rgba(0,0,0,0.15)",
+        }}
       >
         <Image
           src="/images/belajar_suku_kata.png"
@@ -40,7 +63,19 @@ export default function LearnPage() {
       </div>
 
       {/* BELAJAR KATA */}
-      <div onClick={() => router.push("/learn/belajar_kata")} style={cardStyle}>
+      <div
+        onClick={() => router.push("/learn/belajar_kata")}
+        onMouseEnter={() => setHovered("kata")}
+        onMouseLeave={() => setHovered(null)}
+        style={{
+          ...cardStyle,
+          transform: hovered === "kata" ? "scale(1.08)" : "scale(1)",
+          boxShadow:
+            hovered === "kata"
+              ? "0 16px 30px rgba(0,0,0,0.25)"
+              : "0 8px 16px rgba(0,0,0,0.15)",
+        }}
+      >
         <Image
           src="/images/belajar_kata.png"
           alt="Belajar Kata"
@@ -57,6 +92,7 @@ const cardStyle: React.CSSProperties = {
   height: "240px",
   borderRadius: "40px",
   cursor: "pointer",
-  position: "relative", 
+  position: "relative",
   overflow: "hidden",
+  transition: "transform 0.25s ease, box-shadow 0.25s ease",
 };
