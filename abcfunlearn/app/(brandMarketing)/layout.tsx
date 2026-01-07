@@ -7,7 +7,7 @@ type Props = {
 
 const marketingLayout = ({ children }: Props) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]">
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center">
         {children}
@@ -16,4 +16,5 @@ const marketingLayout = ({ children }: Props) => {
     </div>
   );
 };
+
 export default marketingLayout;
