@@ -16,7 +16,7 @@ export default function BelajarSukuKataPage() {
       {sukuKata.map((s) => (
         <Link
           key={s}
-          href={/learn/belajar_suku_kata/detail_suku_kata?suku=${s}}
+          href={'/learn/belajar_suku_kata/detail_suku_kata?suku=${s}'}
           style={{ textDecoration: "none" }}
         >
           <div
