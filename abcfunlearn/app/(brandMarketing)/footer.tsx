@@ -9,8 +9,9 @@ const Footer = () => {
             <div className="mb-6 w-40 h-16 relative">
               <Image
                 src="/images/Logo.png"
-                alt="Logo ABC Fun Learn"
+                alt="Logo"
                 fill
+                sizes="144px"
                 className="object-contain"
               />
             </div>

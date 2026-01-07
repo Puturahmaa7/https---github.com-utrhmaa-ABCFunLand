@@ -1,19 +1,28 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export function proxy(req: NextRequest) {
-  const cookie = req.headers.get("cookie");
+export default clerkMiddleware((auth, req) => {
+  const { pathname } = req.nextUrl;
 
-  if (
-    req.nextUrl.pathname.startsWith("/dashboard") &&
-    (!cookie || !cookie.includes("user_id="))
-  ) {
-    return NextResponse.redirect(new URL("/login", req.url));
+  const publicRoutes = [
+    "/",
+    "/sign-in",
+    "/sign-up",
+    "/verify-email",
+    "/api/webhooks/clerk",
+  ];
+
+  const isPublicRoute = publicRoutes.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  );
+
+  if (!isPublicRoute) {
+    auth.protect();
   }
-
-  return NextResponse.next();
-}
+});
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: [
+    "/((?!_next|.*\\.(?:css|js|png|jpg|jpeg|svg|ico|webp)).*)",
+    "/(api|trpc)(.*)",
+  ],
 };

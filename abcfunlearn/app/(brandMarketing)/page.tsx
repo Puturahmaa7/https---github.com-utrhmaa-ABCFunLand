@@ -174,14 +174,15 @@ export default function MarketingPage() {
             <div className="lg:order-2 mt-8 sm:mt-10 lg:mt-0">
               <div className="relative w-full">
                 <div className="aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] xl:aspect-[6/4]">
-                  <Image
-                    src="/images/KidsLearning.png"
-                    alt="Anak-anak sedang belajar"
-                    fill
-                    className="object-cover rounded-xl lg:rounded-2xl shadow-lg lg:shadow-xl"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
+                  <div className="relative w-full h-[400px]">
+                    <Image
+                      src="/images/KidsLearning.png"
+                      alt="Kids Learning"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -215,6 +216,7 @@ export default function MarketingPage() {
                       src={fitur.gambar}
                       alt={fitur.judul}
                       fill
+                      sizes="96px"
                       className="object-contain"
                     />
                   </div>
@@ -269,6 +271,7 @@ export default function MarketingPage() {
                         src={founder.gambar}
                         alt={`Founder ${index + 1}`}
                         fill
+                        sizes="112px"
                         className="object-cover rounded-full border-4 border-white"
                       />
                     </div>
@@ -312,12 +315,15 @@ export default function MarketingPage() {
                 <div className="flex justify-center mb-4">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                     <div className="relative w-8 h-8 lg:w-9 lg:h-9">
-                      <Image
-                        src={kontak.gambar}
-                        alt={kontak.judul}
-                        fill
-                        className="object-contain"
-                      />
+                      <div className="relative w-8 h-8 lg:w-9 lg:h-9">
+                        <Image
+                          src={kontak.gambar}
+                          alt={kontak.judul}
+                          fill
+                          sizes="36px"
+                          className="object-contain"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

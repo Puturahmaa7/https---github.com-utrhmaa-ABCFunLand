@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   ClerkLoaded,
   ClerkLoading,
-  SignInButton,
   SignedIn,
   SignedOut,
   UserButton,
@@ -15,13 +14,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { links } from "@/config";
-import { cn } from "@/lib/utils";
 
 export const Header = () => {
-  const { isSignedIn } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hideBanner, setHideBanner] = useState(false);
 
   const daftarMenu = [
     { id: "beranda", label: "Beranda" },
@@ -47,11 +42,11 @@ export const Header = () => {
               src="/images/Logo.png"
               alt="Logo"
               fill
+              sizes="144px"
               className="object-contain"
             />
           </Link>
 
-          {/* Menu Desktop */}
           <nav className="hidden lg:flex gap-6">
             {daftarMenu.map((m) => (
               <button
@@ -64,7 +59,6 @@ export const Header = () => {
             ))}
           </nav>
 
-          {/* Auth Desktop */}
           <div className="hidden lg:flex items-center gap-3">
             <ClerkLoading>
               <Loader className="h-5 w-5 animate-spin" />
@@ -79,17 +73,19 @@ export const Header = () => {
               </SignedIn>
 
               <SignedOut>
-                <SignInButton mode="modal">
-                  <Button variant="primaryAccent">Masuk</Button>
-                </SignInButton>
-                <Link href="/register">
-                  <Button variant="secondaryAccent">Daftar</Button>
-                </Link>
+                <SignedOut>
+                  <Link href="/sign-in">
+                    <Button variant="primaryAccent">Masuk</Button>
+                  </Link>
+
+                  <Link href="/sign-up">
+                    <Button variant="secondaryAccent">Daftar</Button>
+                  </Link>
+                </SignedOut>
               </SignedOut>
             </ClerkLoaded>
           </div>
 
-          {/* Mobile Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden rounded border p-2"
@@ -99,7 +95,6 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Menu Mobile */}
       {isMenuOpen && (
         <div className="lg:hidden border-t bg-white p-4 space-y-4">
           {daftarMenu.map((m) => (
@@ -125,16 +120,15 @@ export const Header = () => {
             </SignedIn>
 
             <SignedOut>
-              <SignInButton mode="modal">
-                <Button className="w-full" variant="primaryAccent">
-                  Masuk
-                </Button>
-              </SignInButton>
-              <Link href="/register">
-                <Button className="mt-2 w-full" variant="secondaryAccent">
-                  Daftar
-                </Button>
-              </Link>
+              <SignedOut>
+                <Link href="/sign-in">
+                  <Button variant="primaryAccent">Masuk</Button>
+                </Link>
+
+                <Link href="/sign-up">
+                  <Button variant="secondaryAccent">Daftar</Button>
+                </Link>
+              </SignedOut>
             </SignedOut>
           </ClerkLoaded>
         </div>
