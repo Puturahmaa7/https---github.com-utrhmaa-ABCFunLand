@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function BelajarSukuKataPae() {
+export default function BelajarSukuKataPage() {
   const sukuKata = ["BA", "BI", "BU", "BE", "BO"];
 
   return (
