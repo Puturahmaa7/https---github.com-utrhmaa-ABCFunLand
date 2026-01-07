@@ -1,10 +1,24 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function DetailHurufPage() {
   const params = useSearchParams();
-  const huruf = params.get("huruf") ?? "A";
+  const router = useRouter();
+
+  const huruf = params.get("huruf")?.toUpperCase() ?? "A";
+
+  const kodeHuruf = huruf.charCodeAt(0);
+
+  const hurufSebelumnya =
+    kodeHuruf > 65 ? String.fromCharCode(kodeHuruf - 1) : null;
+
+  const hurufSelanjutnya =
+    kodeHuruf < 90 ? String.fromCharCode(kodeHuruf + 1) : null;
+
+  const pindahHuruf = (h: string) => {
+    router.push(`/learn/belajar_huruf/detail_huruf?huruf=${h}`);
+  };
 
   return (
     <div
@@ -16,6 +30,33 @@ export default function DetailHurufPage() {
         gap: "30px",
       }}
     >
+      {/* NAVIGASI PANAH */}
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "0 40px",
+        }}
+      >
+        {hurufSebelumnya ? (
+          <button onClick={() => pindahHuruf(hurufSebelumnya)} style={panahStyle}>
+            ◀
+          </button>
+        ) : (
+          <div />
+        )}
+
+        {hurufSelanjutnya ? (
+          <button onClick={() => pindahHuruf(hurufSelanjutnya)} style={panahStyle}>
+            ▶
+          </button>
+        ) : (
+          <div />
+        )}
+      </div>
+
+      {/* HURUF BESAR */}
       <div
         style={{
           backgroundColor: "#7ED957",
@@ -27,11 +68,13 @@ export default function DetailHurufPage() {
           justifyContent: "center",
           fontSize: "120px",
           fontWeight: "800",
+          userSelect: "none",
         }}
       >
         {huruf}
       </div>
 
+      {/* TOMBOL SUARA */}
       <button
         style={{
           fontSize: "48px",
@@ -45,3 +88,14 @@ export default function DetailHurufPage() {
     </div>
   );
 }
+
+const panahStyle: React.CSSProperties = {
+  width: "70px",
+  height: "70px",
+  borderRadius: "50%",
+  backgroundColor: "#666",
+  color: "#fff",
+  fontSize: "28px",
+  border: "none",
+  cursor: "pointer",
+};
