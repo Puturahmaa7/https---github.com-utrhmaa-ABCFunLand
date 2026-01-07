@@ -2,6 +2,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function DetailHurufPage() {
   const params = useSearchParams();
@@ -10,14 +11,35 @@ export default function DetailHurufPage() {
   const huruf = params.get("huruf")?.toUpperCase() ?? "A";
   const kodeHuruf = huruf.charCodeAt(0);
 
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
+  const [gambar, setGambar] = useState<string | null>(null);
+  const [hover, setHover] = useState<string | null>(null);
+
   const hurufSebelumnya =
     kodeHuruf > 65 ? String.fromCharCode(kodeHuruf - 1) : null;
-
   const hurufSelanjutnya =
     kodeHuruf < 90 ? String.fromCharCode(kodeHuruf + 1) : null;
 
   const pindahHuruf = (h: string) => {
     router.push(`/learn/belajar_huruf/detail_huruf?huruf=${h}`);
+  };
+
+  // 🔊 ambil data huruf dari database
+  useEffect(() => {
+    const loadHuruf = async () => {
+      const res = await fetch(`/api/huruf?huruf=${huruf}`);
+      const data = await res.json();
+
+      setAudioSrc(data?.audioSrc ?? null);
+      setGambar(data?.gambar ?? null);
+    };
+
+    loadHuruf();
+  }, [huruf]);
+
+  const playAudio = () => {
+    if (!audioSrc) return;
+    new Audio(audioSrc).play();
   };
 
   return (
@@ -30,17 +52,19 @@ export default function DetailHurufPage() {
         gap: "28px",
       }}
     >
-      {/* PANAH + GAMBAR HURUF */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "32px",
-        }}
-      >
+      {/* PANAH + GAMBAR */}
+      <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
         {/* PANAH KIRI */}
         {hurufSebelumnya ? (
-          <button onClick={() => pindahHuruf(hurufSebelumnya)} style={panahStyle}>
+          <button
+            onClick={() => pindahHuruf(hurufSebelumnya)}
+            onMouseEnter={() => setHover("left")}
+            onMouseLeave={() => setHover(null)}
+            style={{
+              ...panahStyle,
+              transform: hover === "left" ? "scale(1.15)" : "scale(1)",
+            }}
+          >
             ◀
           </button>
         ) : (
@@ -61,18 +85,25 @@ export default function DetailHurufPage() {
           }}
         >
           <Image
-            src={`/huruf/${huruf}.png`}
+            src={gambar ?? `/huruf/${huruf}.png`}
             alt={`Huruf ${huruf}`}
             width={200}
             height={200}
             style={{ objectFit: "contain" }}
-            priority
           />
         </div>
 
         {/* PANAH KANAN */}
         {hurufSelanjutnya ? (
-          <button onClick={() => pindahHuruf(hurufSelanjutnya)} style={panahStyle}>
+          <button
+            onClick={() => pindahHuruf(hurufSelanjutnya)}
+            onMouseEnter={() => setHover("right")}
+            onMouseLeave={() => setHover(null)}
+            style={{
+              ...panahStyle,
+              transform: hover === "right" ? "scale(1.15)" : "scale(1)",
+            }}
+          >
             ▶
           </button>
         ) : (
@@ -80,7 +111,7 @@ export default function DetailHurufPage() {
         )}
       </div>
 
-      {/* TEKS HURUF */}
+      {/* TEKS */}
       <div
         style={{
           fontFamily: "var(--font-baloo)",
@@ -94,6 +125,9 @@ export default function DetailHurufPage() {
 
       {/* TOMBOL SUARA */}
       <button
+        onClick={playAudio}
+        onMouseEnter={() => setHover("sound")}
+        onMouseLeave={() => setHover(null)}
         style={{
           fontSize: "52px",
           backgroundColor: "#FFD54F",
@@ -103,6 +137,8 @@ export default function DetailHurufPage() {
           height: "80px",
           cursor: "pointer",
           boxShadow: "0 6px 14px rgba(0,0,0,0.2)",
+          transform: hover === "sound" ? "scale(1.2)" : "scale(1)",
+          transition: "0.2s",
         }}
         aria-label="Putar suara"
       >
@@ -116,10 +152,11 @@ const panahStyle: React.CSSProperties = {
   width: "64px",
   height: "64px",
   borderRadius: "50%",
-  backgroundColor: "#4FC3F7", // biru cerah
+  backgroundColor: "#4FC3F7",
   color: "#fff",
   fontSize: "26px",
   border: "none",
   cursor: "pointer",
   boxShadow: "0 6px 14px rgba(0,0,0,0.25)",
+  transition: "0.2s",
 };
