@@ -19,7 +19,7 @@ export default function LearnPage() {
       {/* BELAJAR HURUF */}
       <div onClick={() => router.push("/learn/belajar_huruf")} style={cardStyle}>
         <Image
-          src="/image/belajar_huruf.png"
+          src="/images/belajar_huruf.png"
           alt="Belajar Huruf"
           fill
           style={{ objectFit: "cover", borderRadius: "40px" }}
@@ -32,7 +32,7 @@ export default function LearnPage() {
         style={cardStyle}
       >
         <Image
-          src="/image/belajar_suku_kata.png"
+          src="/images/belajar_suku_kata.png"
           alt="Belajar Suku Kata"
           fill
           style={{ objectFit: "cover", borderRadius: "40px" }}
@@ -42,7 +42,7 @@ export default function LearnPage() {
       {/* BELAJAR KATA */}
       <div onClick={() => router.push("/learn/belajar_kata")} style={cardStyle}>
         <Image
-          src="/image/belajar_kata.png"
+          src="/images/belajar_kata.png"
           alt="Belajar Kata"
           fill
           style={{ objectFit: "cover", borderRadius: "40px" }}
