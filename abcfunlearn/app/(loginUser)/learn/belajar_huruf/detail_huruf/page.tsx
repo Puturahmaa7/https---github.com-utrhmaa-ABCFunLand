@@ -7,7 +7,6 @@ export default function DetailHurufPage() {
   const router = useRouter();
 
   const huruf = params.get("huruf")?.toUpperCase() ?? "A";
-
   const kodeHuruf = huruf.charCodeAt(0);
 
   const hurufSebelumnya =
@@ -30,48 +29,49 @@ export default function DetailHurufPage() {
         gap: "30px",
       }}
     >
-      {/* NAVIGASI PANAH */}
+      {/* PANAH + HURUF */}
       <div
         style={{
-          width: "100%",
           display: "flex",
-          justifyContent: "space-between",
-          padding: "0 40px",
+          alignItems: "center",
+          gap: "40px",
         }}
       >
+        {/* PANAH KIRI */}
         {hurufSebelumnya ? (
           <button onClick={() => pindahHuruf(hurufSebelumnya)} style={panahStyle}>
             ◀
           </button>
         ) : (
-          <div />
+          <div style={{ width: "70px" }} />
         )}
 
+        {/* HURUF BESAR */}
+        <div
+          style={{
+            backgroundColor: "#7ED957",
+            width: "320px",
+            height: "200px",
+            borderRadius: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "120px",
+            fontWeight: "800",
+            userSelect: "none",
+          }}
+        >
+          {huruf}
+        </div>
+
+        {/* PANAH KANAN */}
         {hurufSelanjutnya ? (
           <button onClick={() => pindahHuruf(hurufSelanjutnya)} style={panahStyle}>
             ▶
           </button>
         ) : (
-          <div />
+          <div style={{ width: "70px" }} />
         )}
-      </div>
-
-      {/* HURUF BESAR */}
-      <div
-        style={{
-          backgroundColor: "#7ED957",
-          width: "320px",
-          height: "200px",
-          borderRadius: "40px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "120px",
-          fontWeight: "800",
-          userSelect: "none",
-        }}
-      >
-        {huruf}
       </div>
 
       {/* TOMBOL SUARA */}
