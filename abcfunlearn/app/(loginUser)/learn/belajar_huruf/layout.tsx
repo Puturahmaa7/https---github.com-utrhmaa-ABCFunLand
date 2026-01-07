@@ -75,7 +75,7 @@ export default function LearnLayout({
             textShadow: "0 2px 4px rgba(0,0,0,0.25)",
           }}
         >
-          Belajar
+          Belajar Huruf
         </div>
 
         {/* SPACER */}
