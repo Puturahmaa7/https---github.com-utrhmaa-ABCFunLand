@@ -32,6 +32,7 @@ export default function DetailSukuKataPage() {
     audio.play();
   };
 
+
   return (
     <div
       style={{
