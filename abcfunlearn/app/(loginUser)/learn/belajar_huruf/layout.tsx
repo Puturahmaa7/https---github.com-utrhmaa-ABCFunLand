@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function LearnLayout({
   children,
@@ -8,6 +8,26 @@ export default function LearnLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const handleBack = () => {
+    // contoh pathname:
+    // /learn/belajar_huruf/detail_huruf
+    // /learn/belajar_huruf
+    // /learn
+
+    const segments = pathname.split("/").filter(Boolean);
+
+    // kalau sudah di /learn → jangan ke mana-mana
+    if (segments.length <= 1) {
+      return;
+    }
+
+    // buang 1 level folder terakhir
+    const targetPath = "/" + segments.slice(0, -1).join("/");
+
+    router.push(targetPath);
+  };
 
   return (
     <div
@@ -30,9 +50,9 @@ export default function LearnLayout({
           flexShrink: 0,
         }}
       >
-        {/* TOMBOL KEMBALI */}
+        {/* TOMBOL KEMBALI DINAMIS */}
         <button
-          onClick={() => router.push("/learn")}
+          onClick={handleBack}
           style={{
             width: "56px",
             height: "56px",
@@ -59,7 +79,7 @@ export default function LearnLayout({
           Belajar
         </div>
 
-        {/* SPACER biar judul tetap tengah */}
+        {/* SPACER */}
         <div style={{ width: "56px" }} />
       </div>
 
