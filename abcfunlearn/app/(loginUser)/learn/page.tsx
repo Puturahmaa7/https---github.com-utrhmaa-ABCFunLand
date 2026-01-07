@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 
 export default function LearnPage() {
-
   const router = useRouter();
 
   return (
@@ -12,11 +11,10 @@ export default function LearnPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100%",
+        minHeight: "100vh",
         gap: "60px",
       }}
     >
-
       <div
         onClick={() => router.push("/learn/belajar_huruf")}
         style={cardStyle}
@@ -33,8 +31,6 @@ export default function LearnPage() {
       />
     </div>
   );
-
-  return <div>Selamat datang di halaman Learn</div>;
 }
 
 const cardStyle: React.CSSProperties = {
