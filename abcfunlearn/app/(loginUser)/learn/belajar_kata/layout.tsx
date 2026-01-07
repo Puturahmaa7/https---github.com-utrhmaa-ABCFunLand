@@ -1,30 +1,83 @@
+"use client";
+
+import { useRouter, usePathname } from "next/navigation";
+
 export default function BelajarKataLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleBack = () => {
+    const segments = pathname.split("/").filter(Boolean);
+    if (segments.length <= 1) return;
+    const targetPath = "/" + segments.slice(0, -1).join("/");
+    router.push(targetPath);
+  };
+
   return (
     <div
       style={{
         height: "100vh",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "#EAF6FF",
       }}
     >
       {/* HEADER */}
       <div
         style={{
-          backgroundColor: "#7ED957",
-          margin: "20px",
-          padding: "20px",
-          borderRadius: "40px",
-          textAlign: "center",
-          fontSize: "36px",
-          fontWeight: "800",
+          margin: "16px",
+          padding: "20px 24px",
+          borderRadius: "36px",
+          display: "flex",
+          alignItems: "center",
+          gap: "20px",
           flexShrink: 0,
+          background:
+            "linear-gradient(135deg, #4FC3F7, #81C784)",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
         }}
       >
-        Belajar Kata
+        {/* TOMBOL KEMBALI */}
+        <button
+          onClick={handleBack}
+          style={{
+            width: "60px",
+            height: "60px",
+            borderRadius: "50%",
+            backgroundColor: "#FFD54F",
+            color: "#333",
+            fontSize: "28px",
+            fontWeight: "bold",
+            border: "none",
+            cursor: "pointer",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+          }}
+          aria-label="Kembali"
+        >
+          ◀
+        </button>
+
+        {/* JUDUL */}
+        <div
+          style={{
+            flex: 1,
+            textAlign: "center",
+            fontSize: "38px",
+            fontWeight: "800",
+            color: "#FFFFFF",
+            letterSpacing: "1px",
+            textShadow: "0 2px 4px rgba(0,0,0,0.25)",
+          }}
+        >
+          Belajar Kata
+        </div>
+
+        {/* SPACER */}
+        <div style={{ width: "60px" }} />
       </div>
 
       {/* CONTENT */}
@@ -32,7 +85,7 @@ export default function BelajarKataLayout({
         style={{
           flex: 1,
           overflowY: "auto",
-          padding: "20px",
+          padding: "24px",
         }}
       >
         {children}
