@@ -11,21 +11,11 @@ export default function LearnLayout({
   const pathname = usePathname();
 
   const handleBack = () => {
-    // contoh pathname:
-    // /learn/belajar_huruf/detail_huruf
-    // /learn/belajar_huruf
-    // /learn
-
     const segments = pathname.split("/").filter(Boolean);
 
-    // kalau sudah di /learn → jangan ke mana-mana
-    if (segments.length <= 1) {
-      return;
-    }
+    if (segments.length <= 1) return;
 
-    // buang 1 level folder terakhir
     const targetPath = "/" + segments.slice(0, -1).join("/");
-
     router.push(targetPath);
   };
 
@@ -35,34 +25,40 @@ export default function LearnLayout({
         height: "100vh",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "#EAF6FF", // biru muda
       }}
     >
       {/* HEADER */}
       <div
         style={{
-          backgroundColor: "#7ED957",
-          margin: "20px",
-          padding: "20px",
-          borderRadius: "40px",
+          margin: "16px",
+          padding: "20px 24px",
+          borderRadius: "36px",
           display: "flex",
           alignItems: "center",
           gap: "20px",
           flexShrink: 0,
+          background:
+            "linear-gradient(135deg, #4FC3F7, #81C784)", // biru → hijau
+          boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
         }}
       >
-        {/* TOMBOL KEMBALI DINAMIS */}
+        {/* TOMBOL KEMBALI */}
         <button
           onClick={handleBack}
           style={{
-            width: "56px",
-            height: "56px",
+            width: "60px",
+            height: "60px",
             borderRadius: "50%",
-            backgroundColor: "#666",
-            color: "#fff",
-            fontSize: "24px",
+            backgroundColor: "#FFD54F", // kuning cerah
+            color: "#333",
+            fontSize: "28px",
+            fontWeight: "bold",
             border: "none",
             cursor: "pointer",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
           }}
+          aria-label="Kembali"
         >
           ◀
         </button>
@@ -72,15 +68,18 @@ export default function LearnLayout({
           style={{
             flex: 1,
             textAlign: "center",
-            fontSize: "36px",
+            fontSize: "38px",
             fontWeight: "800",
+            color: "#FFFFFF",
+            letterSpacing: "1px",
+            textShadow: "0 2px 4px rgba(0,0,0,0.25)",
           }}
         >
           Belajar
         </div>
 
         {/* SPACER */}
-        <div style={{ width: "56px" }} />
+        <div style={{ width: "60px" }} />
       </div>
 
       {/* CONTENT */}
@@ -88,7 +87,7 @@ export default function LearnLayout({
         style={{
           flex: 1,
           overflowY: "auto",
-          padding: "20px",
+          padding: "24px",
         }}
       >
         {children}

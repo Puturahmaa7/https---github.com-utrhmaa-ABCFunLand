@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LearnPage() {
   const router = useRouter();
@@ -15,20 +16,38 @@ export default function LearnPage() {
         gap: "60px",
       }}
     >
-      <div
-        onClick={() => router.push("/learn/belajar_huruf")}
-        style={cardStyle}
-      />
+      {/* BELAJAR HURUF */}
+      <div onClick={() => router.push("/learn/belajar_huruf")} style={cardStyle}>
+        <Image
+          src="/images/belajar_huruf.png"
+          alt="Belajar Huruf"
+          fill
+          style={{ objectFit: "cover", borderRadius: "40px" }}
+        />
+      </div>
 
+      {/* BELAJAR SUKU KATA */}
       <div
         onClick={() => router.push("/learn/belajar_suku_kata")}
         style={cardStyle}
-      />
+      >
+        <Image
+          src="/images/belajar_suku_kata.png"
+          alt="Belajar Suku Kata"
+          fill
+          style={{ objectFit: "cover", borderRadius: "40px" }}
+        />
+      </div>
 
-      <div
-        onClick={() => router.push("/learn/belajar_kata")}
-        style={cardStyle}
-      />
+      {/* BELAJAR KATA */}
+      <div onClick={() => router.push("/learn/belajar_kata")} style={cardStyle}>
+        <Image
+          src="/images/belajar_kata.png"
+          alt="Belajar Kata"
+          fill
+          style={{ objectFit: "cover", borderRadius: "40px" }}
+        />
+      </div>
     </div>
   );
 }
@@ -36,7 +55,8 @@ export default function LearnPage() {
 const cardStyle: React.CSSProperties = {
   width: "280px",
   height: "240px",
-  backgroundColor: "#7ED957",
   borderRadius: "40px",
   cursor: "pointer",
+  position: "relative", 
+  overflow: "hidden",
 };
