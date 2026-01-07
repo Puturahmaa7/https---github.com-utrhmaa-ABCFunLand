@@ -13,7 +13,7 @@ import {
   getUserProgress,
   getUserSubscription,
 } from "@/db/queries";
-
+=
 const LeaderboardPage = async () => {
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
