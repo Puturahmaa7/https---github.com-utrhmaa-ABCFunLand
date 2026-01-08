@@ -9,7 +9,7 @@ export default function DetailKataPage() {
   const router = useRouter();
 
   // 🔹 hanya sampai IKAN
-  const daftarKata = ["AYAM", "BOLA", "IKAN"];
+  const daftarKata = ["AYAM", "BOLA", "CERI", "DOMBA", "ELANG", "IKAN"];
 
   const kataParam = params.get("kata")?.toUpperCase() ?? daftarKata[0];
   const indexKata = daftarKata.indexOf(kataParam);
