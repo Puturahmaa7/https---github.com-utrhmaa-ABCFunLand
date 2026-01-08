@@ -206,7 +206,16 @@ export default function QuizHurufPage() {
             ❌ Salah: {jumlahSalah}
           </div>
 
-          <div style={{ marginTop: "18px", display: "flex", gap: "12px" }}>
+          <div
+            style={{
+              marginTop: "18px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
             <button onClick={generateQuiz} style={ulangBtn}>
               Ulang Kuis
             </button>
