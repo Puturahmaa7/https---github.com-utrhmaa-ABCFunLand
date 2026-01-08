@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 
-export default function BelajarKataLayout({
+export default function QuizHurufLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -11,10 +11,7 @@ export default function BelajarKataLayout({
   const pathname = usePathname();
 
   const handleBack = () => {
-    const segments = pathname.split("/").filter(Boolean);
-    if (segments.length <= 1) return;
-    const targetPath = "/" + segments.slice(0, -1).join("/");
-    router.push(targetPath);
+    router.push("/quiz");
   };
 
   return (
@@ -23,10 +20,10 @@ export default function BelajarKataLayout({
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#EAF6FF",
+        backgroundColor: "#FFFDE7", // kuning lembut (beda dari materi)
       }}
     >
-      {/* HEADER */}
+      {/* HEADER QUIZ */}
       <div
         style={{
           margin: "16px",
@@ -36,12 +33,11 @@ export default function BelajarKataLayout({
           alignItems: "center",
           gap: "20px",
           flexShrink: 0,
-          background:
-            "linear-gradient(135deg, #4FC3F7, #81C784)",
+          background: "linear-gradient(135deg, #FFB300, #FF7043)", // oranye ceria
           boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
         }}
       >
-        {/* TOMBOL KEMBALI */}
+        {/* BACK */}
         <button
           onClick={handleBack}
           style={{
@@ -50,7 +46,7 @@ export default function BelajarKataLayout({
             borderRadius: "50%",
             backgroundColor: "#FFD54F",
             color: "#333",
-            fontSize: "28px",
+            fontSize: "26px",
             fontWeight: "bold",
             border: "none",
             cursor: "pointer",
@@ -61,22 +57,21 @@ export default function BelajarKataLayout({
           ◀
         </button>
 
-        {/* JUDUL */}
+        {/* JUDUL QUIZ */}
         <div
           style={{
             flex: 1,
             textAlign: "center",
-            fontSize: "38px",
+            fontSize: "36px",
             fontWeight: "800",
             color: "#FFFFFF",
             letterSpacing: "1px",
             textShadow: "0 2px 4px rgba(0,0,0,0.25)",
           }}
         >
-          Belajar Kata
+          Quiz Huruf
         </div>
 
-        {/* SPACER */}
         <div style={{ width: "60px" }} />
       </div>
 
@@ -84,8 +79,8 @@ export default function BelajarKataLayout({
       <div
         style={{
           flex: 1,
-          overflowY: "auto",
           padding: "24px",
+          overflow: "hidden", // quiz fokus, tidak scroll panjang
         }}
       >
         {children}
