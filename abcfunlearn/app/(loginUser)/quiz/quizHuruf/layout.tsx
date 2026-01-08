@@ -80,7 +80,7 @@ export default function QuizHurufLayout({
         style={{
           flex: 1,
           padding: "24px",
-          overflow: "hidden", // quiz fokus, tidak scroll panjang
+          overflowY: "auto", // ⬅️ INI KUNCI UTAMANYA
         }}
       >
         {children}
