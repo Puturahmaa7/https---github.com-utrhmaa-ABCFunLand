@@ -8,7 +8,6 @@ export default function QuizHurufLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const pathname = usePathname();
 
   const handleBack = () => {
     router.push("/quiz");
@@ -33,7 +32,7 @@ export default function QuizHurufLayout({
           alignItems: "center",
           gap: "20px",
           flexShrink: 0,
-          background: "linear-gradient(135deg, #FFB300, #FF7043)", // oranye ceria
+          background: "linear-gradient(135deg, #FFB300, #FF7043)",
           boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
         }}
       >

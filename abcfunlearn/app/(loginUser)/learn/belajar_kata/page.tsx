@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function BelajarKataPage() {
-  // sesuai permintaan: sampai IKAN
   const kata = ["AYAM", "BOLA", "CERI", "DOMBA", "ELANG", "IKAN"];
 
   const [hovered, setHovered] = useState<string | null>(null);
@@ -34,7 +33,6 @@ export default function BelajarKataPage() {
               alignItems: "center",
               justifyContent: "center",
 
-              /* FONT ANAK-ANAK */
               fontFamily: "var(--font-baloo)",
               fontSize: "44px",
               fontWeight: "800",
@@ -43,7 +41,6 @@ export default function BelajarKataPage() {
               cursor: "pointer",
               userSelect: "none",
 
-              /* HOVER */
               transform: hovered === k ? "scale(1.12)" : "scale(1)",
               boxShadow:
                 hovered === k
