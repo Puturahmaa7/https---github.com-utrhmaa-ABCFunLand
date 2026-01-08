@@ -44,13 +44,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
           href="/learn"
           iconSrc="/images/Learn.png"
         />
-        <SidebarItem
-          label="Peringkat"
-          href="/leaderboard"
-          iconSrc="/images/Leaderboard.png"
-        />
         <SidebarItem label="Kuis" href="/quiz" iconSrc="/images/Quiz.png" />
-        <SidebarItem label="Toko" href="/shop" iconSrc="/images/Shop.png" />
       </nav>
 
       {/* User */}

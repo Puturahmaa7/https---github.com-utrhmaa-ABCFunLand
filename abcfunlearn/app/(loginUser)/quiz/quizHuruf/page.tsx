@@ -12,7 +12,7 @@ type Question = {
 };
 
 export default function QuizHurufPage() {
-  const router = useRouter(); // ✅ DI SINI SAJA
+  const router = useRouter();
   const hurufList = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i)
   );
@@ -26,9 +26,6 @@ export default function QuizHurufPage() {
 
   const diSoalTerakhir = currentIndex === TOTAL_SOAL - 1;
 
-  // =============================
-  // HITUNG HASIL (AMAN)
-  // =============================
   const jumlahTerjawab = answers.filter((a) => a !== null).length;
 
   const jumlahBenar = answers.filter(
@@ -37,9 +34,6 @@ export default function QuizHurufPage() {
 
   const jumlahSalah = jumlahTerjawab - jumlahBenar;
 
-  // =============================
-  // AUDIO
-  // =============================
   const playHuruf = (huruf: string) => {
     const audio = new Audio(`/suaraHuruf/${huruf.toLowerCase()}.mp3`);
     audio.play();
@@ -52,9 +46,6 @@ export default function QuizHurufPage() {
     audio.play();
   };
 
-  // =============================
-  // GENERATE QUIZ
-  // =============================
   const generateQuiz = () => {
     const soal: Question[] = [];
 
@@ -86,7 +77,6 @@ export default function QuizHurufPage() {
   const jawaban = answers[currentIndex];
 
   const nextSoal = () => {
-    // jika belum menjawab → otomatis salah
     if (!answers[currentIndex]) {
       const copy = [...answers];
       copy[currentIndex] = SKIP_ANSWER;
@@ -120,15 +110,12 @@ export default function QuizHurufPage() {
         gap: "22px",
       }}
     >
-      {/* TRACKER */}
       <div style={tracker}>
         Soal {currentIndex + 1} dari {TOTAL_SOAL}
       </div>
 
-      {/* INSTRUKSI */}
       <div style={instruksi}>Dengarkan suara lalu pilih huruf</div>
 
-      {/* TOMBOL AUDIO */}
       <button
         onClick={playSoal}
         onMouseEnter={() => setHover("sound")}
@@ -142,7 +129,6 @@ export default function QuizHurufPage() {
         🔊
       </button>
 
-      {/* PILIHAN */}
       <div style={grid}>
         {current.options.map((h) => {
           const benar = h === current.correct;
@@ -178,7 +164,6 @@ export default function QuizHurufPage() {
         })}
       </div>
 
-      {/* NAVIGASI */}
       <div style={{ display: "flex", gap: "12px" }}>
         <button
           disabled={currentIndex === 0}
@@ -193,7 +178,6 @@ export default function QuizHurufPage() {
         </button>
       </div>
 
-      {/* HASIL AKHIR */}
       {diSoalTerakhir && (
         <div style={hasilBox}>
           <div style={hasilTitle}>Hasil Quiz</div>
@@ -229,8 +213,6 @@ export default function QuizHurufPage() {
     </div>
   );
 }
-
-/* ================= STYLES ================= */
 
 const tracker = {
   fontFamily: "var(--font-baloo)",

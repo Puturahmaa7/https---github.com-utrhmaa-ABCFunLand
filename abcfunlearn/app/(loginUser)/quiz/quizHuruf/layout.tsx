@@ -20,7 +20,7 @@ export default function QuizHurufLayout({
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#FFFDE7", // kuning lembut (beda dari materi)
+        backgroundColor: "#FFFDE7",
       }}
     >
       {/* HEADER QUIZ */}
@@ -80,7 +80,7 @@ export default function QuizHurufLayout({
         style={{
           flex: 1,
           padding: "24px",
-          overflowY: "auto", // ⬅️ INI KUNCI UTAMANYA
+          overflowY: "auto",
         }}
       >
         {children}
